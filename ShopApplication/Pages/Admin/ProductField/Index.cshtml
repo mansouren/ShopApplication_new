@@ -1,0 +1,101 @@
+﻿@page "{id}"
+@model ShopApplication.Pages.Admin.ProductField.IndexModel
+@{
+    int productid =Convert.ToInt32(ViewData["ProductId"]);
+}
+<div class="row">
+
+    <div class="col-md-12" style="margin-top:20px;">
+        <div>
+            <h4 class="fa-pull-right">نمایش مشخصه ها</h4>
+            <h4 class="fa-pull-left">
+                <a class="btn btn-success" href="#" onclick="AddField('@productid')">افزودن مشخصه</a>
+            </h4>
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+<hr />
+<div class=" table-responsive table-full-width fa-pull-right">
+    @{
+        int rowCount = 1;
+    }
+    <table class="table table-hover table-striped">
+        <thead>
+            <tr>
+                <th>ردیف</th>
+                <th>نام مشخصه</th>
+                <th>مقدار مشخصه</th>
+                <th>عملیات</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.productFields)
+            {
+                <tr>
+                    <td>@rowCount</td>
+                    <td>@item.Feild.Name</td>
+                    <td>@item.FeildValue</td>
+                    <td>
+
+                        <a href="#" onclick="myDelete('@item.Id', '@productid')" class="btn btn-danger fa-xs">
+                            <i class="fa fa-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+                rowCount++;
+            }
+        </tbody>
+    </table>
+</div>
+<div id="myModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 id="myTitle" class="modal-title"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div id="myBody" class="modal-body">
+
+            </div>
+
+        </div>
+    </div>
+</div>
+@section mySection{
+
+    <script>
+        function AddField(id) {
+            $.ajax({
+                url: "/Admin/ProductField/Create/" + id,
+                type: "Get",
+                data: {}
+            }).done(function (result) {
+                $('#myModal').modal('show');
+                $('#myTitle').html('ثبت مشخصه های محصول');
+                $('#myBody').html(result);
+            });
+        }
+
+    </script>
+    <script src="~/js/sweet.js"></script>
+    <script>
+        function myDelete(id, productid) {
+            swal({
+                title: "تائید حذف",
+                text: "آیا از حذف این مقدار اطمینان دارید ؟",
+                icon: "warning",
+                buttons: ["لغو", "بلی"],
+                dangerMode: true,
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        window.open('/Admin/ProductField/Delete/' + id + '/' + productid, '_parent');
+                    }
+                });
+        }
+    </script>
+}

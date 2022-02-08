@@ -1,0 +1,65 @@
+﻿@page "{id}"
+@model ShopApplication.Pages.Admin.Menu.DetailModel
+@{
+}
+
+<div class="x_title">
+    <h2>
+        نمایش جزئیات
+
+    </h2>
+
+    <div class="clearfix"></div>
+    <hr />
+</div>
+<div class="col-md-12 col-sm-8 ">
+    <input type="hidden" asp-for="MenuDto.Id" />
+
+    <div class="row">
+        <dl>
+            <dt>
+                @Html.DisplayNameFor(m => m.MenuDto.Name)
+            </dt>
+            <dd>
+                @Html.DisplayFor(m => m.MenuDto.Name)
+            </dd>
+        </dl>
+    </div>
+    <div class="row">
+        <dl>
+            <dt>
+                @Html.DisplayNameFor(m => m.MenuDto.Order)
+            </dt>
+            <dd>
+                @Html.DisplayFor(m => m.MenuDto.Order)
+            </dd>
+        </dl>
+    </div>
+    <div class="row">
+        <dl>
+            <dt>
+                @Html.DisplayNameFor(m => m.MenuDto.NotShow)
+            </dt>
+            <dd>
+                @Html.DisplayFor(m => m.MenuDto.NotShow)
+            </dd>
+        </dl>
+    </div>
+    <div class="row">
+        <dl>
+            <dt>
+                @Html.DisplayNameFor(m => m.MenuDto.Description)
+            </dt>
+            <dd>
+                @Html.Raw(Model.MenuDto.Description)
+            </dd>
+        </dl>
+    </div>
+</div> 
+<div class="form-group">
+    <div class="col-md-12 col-sm-12 col-xs-12 col-md-offset-5">
+
+        <a asp-page="Index" class="btn btn-warning">بازگشت</a>
+    </div>
+</div>
+

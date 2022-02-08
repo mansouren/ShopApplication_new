@@ -1,0 +1,39 @@
+﻿@page "{id}"
+@model ShopApplication.Pages.Admin.Group.EditModel
+@{
+}
+<div><h2>ویرایش گروه</h2></div>
+<hr />
+<form method="post">
+
+    <input asp-for="groupDto.Id" type="hidden" />
+
+    <div class="col-md-12 col-sm-8 ">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="groupDto.Name">نام گروه</label>
+            <input asp-for="groupDto.Name" class="form-control" />
+            <span asp-validation-for="groupDto.Name" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="groupDto.Order">ترتیب نمایش</label>
+            <input asp-for="groupDto.Order" min="1" class="form-control" />
+            <span asp-validation-for="groupDto.Order" class="text-danger"></span>
+        </div>
+       
+
+        <div class="form-group">
+            <label asp-for="groupDto.NotShow">عدم نمایش</label>
+            <input asp-for="groupDto.NotShow" type="checkbox" />
+            <span asp-validation-for="groupDto.NotShow" class="text-danger"></span>
+        </div>
+
+
+        <div class="form-group">
+            <input class="btn btn-success " value="ذخیره" type="submit" />
+            <a class="btn btn-danger " asp-page="Index">بازگشت</a>
+        </div>
+    </div>
+
+</form>

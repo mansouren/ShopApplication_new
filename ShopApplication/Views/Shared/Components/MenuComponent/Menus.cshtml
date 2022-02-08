@@ -1,0 +1,78 @@
+﻿@model IEnumerable<ShopApplication.Models.MenuDto>
+@using ShopApplication.WebFrameWorks.Scope;
+
+@{ 
+   string userRole = SiteLayoutScope.UserRole;
+   bool isauthenticated = SiteLayoutScope.IsAuthenticated;
+}
+<div id="navbar" class="d-none d-sm-block" style="z-index:1">
+    <div class="float-right" style="margin-right:20px;">
+        <a href="~/Home/Index">صفحه اصلی</a>
+
+        @await Component.InvokeAsync("GroupComponent")
+        
+        @foreach (var item in Model)
+        {
+            <a href="~/Home/ShowMenu/@item.Id">@item.Name</a>
+        }
+        @if (isauthenticated)
+        {
+            if (userRole == "User")
+            {
+                <a href="/Profile/Index">داشبورد</a>
+
+            }
+            else
+            {
+                <a href="/Admin/">داشبورد</a>
+            }
+
+        }
+        else
+        {
+            <a href="/Register">ثبت نام</a>
+            <a href="/Login">ورود</a>
+        }
+    </div>
+    <div class="float-left" style="margin-left:20px;">
+        @if (isauthenticated)
+        {
+            <a href="/Profile/ShowShoppingCart"><span class="fa fa-shopping-cart"></span>سبد خرید(@ViewBag.ShoppingCartCount)</a>
+        }
+        else
+        {
+            <a href="/Login" style="float:none"><span class="fa fa-shopping-cart"></span>سبد خرید(0)</a>
+
+        }
+
+    </div>
+</div>
+<div id="navbar" class="d-block d-sm-none">
+
+    <a href="~/Home/Index" style="float:none">صفحه اصلی</a>
+    @foreach (var item in Model)
+    {
+        <a href="~/Home/ShowMenu/@item.Id" style="float:none">@item.Name</a>
+    }
+    <a href="/Login" style="float:none"><span class="fa fa-shopping-cart"></span>سبد خرید(0)</a>
+    @if (isauthenticated)
+    {
+        <a href="/Profile/ShowShoppingCart" style="float:none"><span class="fa fa-shopping-cart"></span>سبد خرید(@ViewBag.ShoppingCartCount)</a>
+
+    if (userRole == "User")
+    {
+        <a href="/Profile/Index" style="float:none">داشبورد</a>
+
+    }
+    else
+    {
+        <a href="/Admin/" style="float:none">داشبورد</a>
+    }
+
+}
+else
+{
+    <a href="/Register" style="float:none">ثبت نام</a>
+    <a href="/Login" style="float:none">ورود</a>
+}
+</div>

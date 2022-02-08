@@ -1,0 +1,30 @@
+﻿@page "{id}"
+@model ShopApplication.Pages.Admin.ProductField.CreateModel
+@{
+    Layout = null;
+}
+<form method="post" asp-page-handler="Create">
+
+    <select style="display:none;" asp-for="productFeild.ProductId" asp-items="@(ViewData["ProductId"] as SelectList)"></select>
+    <div class="col-md-12 col-sm-8 ">
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label>نام مشخصه</label>
+            <select class="form-control" asp-items="@(ViewData["Fields"] as SelectList)" asp-for="productFeild.FeildId"></select>
+            <span asp-validation-for="productFeild.FeildId" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="productFeild.FeildValue">مقدار مشخصه</label>
+            <input asp-for="productFeild.FeildValue" class="form-control" />
+            <span asp-validation-for="productFeild.FeildValue" class="text-danger"></span>
+        </div>
+
+
+        <div class="form-group">
+            <button class="btn btn-success" type="submit">ثبت</button>
+
+        </div>
+    </div>
+
+</form>

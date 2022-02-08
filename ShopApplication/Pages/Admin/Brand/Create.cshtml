@@ -1,0 +1,45 @@
+﻿@page
+@model ShopApplication.Pages.Admin.Brand.CreateModel
+@{
+}
+<div>
+    <h2>افزودن برند</h2>
+</div>
+<hr />
+<form method="post" enctype="multipart/form-data">
+    <div class="col-md-12 col-sm-8 ">
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="brandDto.Title">عنوان برند</label>
+            <input asp-for="brandDto.Title" class="form-control" />
+            <span asp-validation-for="brandDto.Title" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="brandDto.Order">ترتیب نمایش</label>
+            <input asp-for="brandDto.Order" value="1" min="1" class="form-control" />
+            <span asp-validation-for="brandDto.Order" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="brandDto.ImageFile">آیکون</label>
+            <input asp-for="brandDto.ImageFile" type="file" required />
+
+        </div>
+        <br />
+
+        <div class="form-group">
+            <label asp-for="brandDto.NotShow">عدم نمایش</label>
+            <input asp-for="brandDto.NotShow" type="checkbox" />
+            <span asp-validation-for="brandDto.NotShow" class="text-danger"></span>
+        </div>
+
+
+        <div class="form-group">
+            <input class="btn btn-success" value="ثبت" type="submit" />
+            <a class="btn btn-danger " asp-page="Index">بازگشت</a>
+
+        </div>
+    </div>
+
+</form>

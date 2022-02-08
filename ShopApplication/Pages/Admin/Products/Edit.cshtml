@@ -1,0 +1,76 @@
+﻿@page "{id}"
+@model ShopApplication.Pages.Admin.Products.EditModel
+@{
+}
+<div>
+    <h2>ویرایش محصول</h2>
+</div>
+<hr />
+<form method="post" enctype="multipart/form-data">
+    <div class="col-md-12 col-sm-8 ">
+        <input type="hidden" asp-for="productDto.Id" />
+        <input type="hidden" asp-for="productDto.Img" />
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="productDto.Name">نام محصول</label>
+            <input asp-for="productDto.Name" class="form-control" />
+            <span asp-validation-for="productDto.Name" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="productDto.GroupId">انتخاب گروه</label>
+            <select asp-for="productDto.GroupId" class="form-control" asp-items="@(ViewData["Group"] as SelectList)"></select>
+            <span asp-validation-for="productDto.GroupId" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="productDto.BrandId">انتخاب برند</label>
+            <select asp-for="productDto.BrandId" class="form-control" asp-items="@(ViewData["brands"] as SelectList)"></select>
+            <span asp-validation-for="productDto.BrandId" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="productDto.ImgFile">انتخاب تصویر</label>
+            <input asp-for="productDto.ImgFile" type="file" />
+            <br />
+            <img class="img-fluid" src="~/Images/Product/@Model.productDto.Img" width="100" height="100"/>
+        </div>
+        <div class="form-group">
+            <label asp-for="productDto.Price">قیمت</label>
+            <input asp-for="productDto.Price" min="0" class="form-control" />
+            <span asp-validation-for="productDto.Price" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="productDto.Qty">موجودی</label>
+            <input asp-for="productDto.Qty"  min="0" class="form-control" />
+            <span asp-validation-for="productDto.Qty" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="productDto.Description">توضیحات</label>
+            <textarea asp-for="productDto.Description" class="form-control" id="my-textarea"></textarea>
+        </div>
+        <br />
+
+        <div class="form-group">
+            <label asp-for="productDto.NotShow">عدم نمایش</label>
+            <input asp-for="productDto.NotShow" type="checkbox" />
+            <span asp-validation-for="productDto.NotShow" class="text-danger"></span>
+        </div>
+
+
+        <div class="form-group">
+            <input class="btn btn-success" value="ذخیره" type="submit" />
+            <a class="btn btn-danger " asp-page="Index">بازگشت</a>
+
+        </div>
+    </div>
+
+</form>
+
+@section mySection{
+    <script src="~/ckeditor/ckeditor.js"></script>
+    <script src="~/ckeditor/adapters/jquery.js"></script>
+    <script>
+        $(function () {
+            $('#my-textarea').ckeditor();
+        });
+    </script>
+}

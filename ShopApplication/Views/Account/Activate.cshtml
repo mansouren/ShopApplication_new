@@ -1,0 +1,34 @@
+﻿@model ShopApplication.Models.ActivateDto
+
+@{
+    ViewData["Title"] = "Activate";
+    Layout = "~/Views/Shared/_AccountLayout.cshtml";
+}
+
+
+<div class="wrap-account-pic col-lg-6 col-md-6 hidden-sm hidden-xs" style="background-image:url(../../Images/Site/Activate.png)">
+
+</div>
+
+<div class="account-form col-lg-6 col-md-6 col-sm-12 col-xs-12" >
+    <span class="account-form-title">
+        فعال سازی حساب کاربری
+    </span>
+    <form asp-action="Activate">
+        <div class="wrap-input-account">
+            <div class="form-group">
+                <input asp-for="UserCode" type="number" class="input-account" placeholder="کد فعال سازی" />
+                <span class="focus-account"></span>
+                <span asp-validation-for="UserCode" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="container-button">
+            <button class="account-button" type="submit">
+                فعال سازی
+            </button>
+        </div>
+    </form>
+    </div>
+   
+
+    

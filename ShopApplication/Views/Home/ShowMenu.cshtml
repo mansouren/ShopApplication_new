@@ -1,0 +1,7 @@
+﻿@model ShopApplication.Models.MenuDto
+@{ 
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+<h2 style="text-align:right;">@Model.Name</h2>
+<br />
+<h5 style="text-align:right;">@Html.Raw(Model.Description)</h5>

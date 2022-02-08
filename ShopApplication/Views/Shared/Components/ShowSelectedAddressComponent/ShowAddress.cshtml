@@ -1,0 +1,13 @@
+﻿@model ShopApplication.DataLayer.Entities.Address
+@{
+    Layout = null;
+}
+
+<div class="text-center alert alert-warning">
+    <h4 >
+        @Model.City.State.Name-
+        @Model.City.Name-
+        @Model.AddressText
+    </h4>
+    <small>@Model.PostalCode</small>
+</div>

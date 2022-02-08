@@ -1,0 +1,44 @@
+﻿@page "{id}"
+@model ShopApplication.Pages.Admin.Sliders.DeleteModel
+@{
+}
+<form method="post">
+    <div class="col-md-8 col-sm-8 col-xs-8">
+        <input type="hidden" asp-for="sliderDto.Id" />
+        <input type="hidden" asp-for="sliderDto.Title" />
+        <input type="hidden" asp-for="sliderDto.Imgname" />
+        @*<input type="hidden" asp-for="sliderDto.ImageFile" />*@
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>
+                    حذف اسلاید
+
+                </h2>
+                
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <div class="row">
+
+                    <div class="alert alert-danger ">
+                        <p>آیا میخواهید اسلاید " @Model.sliderDto.Title " را حذف نمایید ؟</p>
+                        <img src="~/Images/Slide/thumb/@Model.sliderDto.Imgname" alt="تصویری یافت نشد"
+                             class="img-fluid" style="margin:auto;"  />
+                    </div>
+                    
+
+                    <hr class="col-md-12" />
+                    <div class="item form-group">
+                        <div class="col-md-12 col-sm-12 col-xs-12 col-md-offset-5">
+
+                            <input type="submit" class="btn btn-danger" value="حذف" />
+                            <a asp-page="Index" class="btn btn-info">انصراف</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>

@@ -1,0 +1,74 @@
+﻿@model IEnumerable<ShopApplication.DataLayer.Entities.Address>
+
+@{
+    ViewData["Title"] = "نمایش آدرس ها";
+    Layout = "~/Pages/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12" style="margin-top:20px;">
+        
+            <div class="header">
+                <h4 class="title fa-pull-right">آدرس ها</h4>
+                <h4 class="title fa-pull-left">
+                    <a href="/Address/Create" class="btn btn-success">جدید</a>
+                </h4>
+                <div class="clearfix"></div>
+
+            </div>
+            <div class=" table-responsive table-full-width fa-pull-right">
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.AddressText)</th>
+                            <th>@Html.DisplayNameFor(model => model.City.State.Name)</th>
+                            <th>@Html.DisplayNameFor(model => model.City.Name)</th>
+                            <th>@Html.DisplayNameFor(model => model.PostalCode)</th>
+                            <th>عملیات</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(model => item.AddressText)</td>
+                                <td>@Html.DisplayFor(model => item.City.State.Name)</td>
+                                <td>@Html.DisplayFor(model => item.City.Name)</td>
+                                <td>@Html.DisplayFor(model => item.PostalCode)</td>
+
+                                <td>
+                                    <a href="/Address/Edit/@item.Id" class="btn btn-xs btn-warning">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                    <a href="#" onclick="myDelete('@item.Id')" class="btn btn-xs btn-danger">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+@section mySection{
+    <script src="~/js/sweet.js"></script>
+    <script>
+        function myDelete(id) {
+            swal({
+                title: "تائید حذف",
+                text: "آیا از حذف این مقدار اطمینان دارید ؟",
+                icon: "warning",
+                buttons: ["لغو", "بلی"],
+                dangerMode: true,
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        window.open('/Address/Delete/' + id, '_parent');
+                    }
+                });
+        }
+    </script>
+}

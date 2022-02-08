@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+@using ShopApplication.Services.Scope;
+@inject UserPanelScope userPanelScope
+@{
+    string userRole = userPanelScope.GetUserRole(User.Identity.Name);
+}
+<html lang="fa">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>@ViewBag.Title</title>
+    <link href="~/lib/bootstrap-v4-rtl/css/bootstrap-rtl.css" rel="stylesheet" />
+    <link href="~/lib/font-awesome/css/all.css" rel="stylesheet" />
+    <link href="~/css/AdminStyle.css" rel="stylesheet" />
+</head>
+<body dir="rtl">
+    <div class="container-fluid">
+        <div class="row top-nav">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+                @if (userRole == "Admin")
+                {
+                    <a href="/Admin/" style="font-size:24px;">داشبورد مدیریت</a>
+                }
+                else
+                {
+                    <a href="/Profile/Index" style="font-size:24px;">داشبورد کاربری</a>
+
+                }
+
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+                <a href="/Account/LogOut" class="fa-pull-left"><span class="fas fa-sign-out-alt"></span></a>
+                <a href="/" class="fa-pull-left"><span class="fa fa-eye"></span></a>
+                @if (userRole == "Admin")
+                {
+                    <a href="/Profile/ChangePassword" class="fa-pull-left"><span class="fa fa-key"></span></a>
+                }
+            </div>
+        </div>
+        <div class="row">
+            <div class="sidebar">
+                @if (userRole == "Admin")
+                {
+
+                    <a href="/Admin/Users" class="active"><span class="fa fa-user"></span>کاربران</a>
+                    <a href="/Admin/Menu"><span class="fas fa-list"></span>تنظیمات منو</a>
+                    <a href="/Admin/Factors"><span class="fas fa-money-bill-alt"></span>سفارش ها</a>
+                    <a href="/Admin/SmsSettings"><span class="fa fa-mobile"></span>تنظیمات پیامک</a>
+                    <a href="/Admin/SiteSettings"><span class="fas fa-cogs"></span>تنظیمات سایت</a>
+                    <a href="/Admin/CallSettings"><span class="fas fa-phone"></span>تنظیمات تماس</a>
+                    <a href="/Admin/Social"><span class="fa fa-users"></span>تنظیمات شبکه های اجتماعی</a>
+                    <a href="/Admin/Sliders"><span class="fa fa-sliders-h"></span>تنظیمات اسلایدرها</a>
+                    <a href="/Admin/Brand"><span class="fa fa-list-ol"></span>تنظیمات برندها</a>
+                    <a href="/Admin/Group"><span class="fa fa-layer-group"></span>تنظیمات گروه ها</a>
+                    <a href="/Admin/Products"><span class="fa fa-barcode"></span>تنظیمات محصولات</a>
+                    <a href="/Admin/Fields"><span class="fa fa-list-ul"></span>تنظیمات مشخصه های محصول</a>
+                }
+                else
+                {
+                    <a href="/Address/Index" class="active"><span class="fa fa-address-book"></span>آدرس ها</a>
+                    <a href="/Profile/ChangePassword"><span class="fa fa-key"></span>تغییر پسورد</a>
+                    <a href="/Profile/ShowShoppingCart"><span class="fa fa-shopping-basket"></span>سبد خرید</a>
+                }
+            </div>
+        </div>
+        <div class="content">
+            @RenderBody()
+        </div>
+
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap-v4-rtl/js/bootstrap.min.js"></script>
+    @RenderSection("mySection", false)
+</body>
+</html>

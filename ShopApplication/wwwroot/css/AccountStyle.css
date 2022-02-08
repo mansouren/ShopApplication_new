@@ -1,0 +1,183 @@
+﻿body {
+    direction:rtl;
+    background-color:white;
+    margin:auto;
+    font-family:'B Yekan','B Koodak',Tahoma
+}
+
+a {
+    font-size:14px;
+    color :#00ad5f;
+}
+
+a:hover {
+    text-decoration:none;
+    color:#555555;
+}
+
+p {
+    font-size: 14px;
+    color: #555555;
+}
+
+input {
+    border: 1px solid #e6e6e6;
+    outline: none;
+}
+
+textarea{
+    border:none;
+    outline:none;
+}
+
+/*Chroem and Safari Packages for Customizing html elments such as input*/ 
+input::-webkit-input-placeholder{
+    color:#999999;
+}
+/*Mozila firwfox packages*/
+input::-moz-placeholder {
+    color: #999999;
+}
+
+textarea::-webkit-input-placeholder{
+    color:#999999;
+}
+
+textarea::-moz-placeholder {
+    color: #999999;
+}
+
+button{
+    border:none;
+    
+}
+
+.container-button{
+    width:100%;
+    justify-content:center;
+}
+
+.account-button {
+    justify-content: center;
+    align-content: center; /*The align-content property modifies the behavior of the flex-wrap property. It is similar to align-items, but instead of aligning flex items, it aligns flex lines.*/
+    padding: 0 20px 0 20px;
+    width: 100%;
+    height: 50px;
+    border-radius: 3px;
+    background-color: #00ad5f;
+    font-size: 12px;
+    color: white;
+}
+
+.account-button:hover{
+    background-color:#555555;
+    transition:1.5s;
+}
+
+.my-container{
+    width:100%;
+    margin:0 auto; /*Top&Bottom margin is 0 and right&left margin is auto*/
+}
+
+.container-form {
+    width: 100%;
+    min-height: 100vh; /*if container was empty,the least hight size should be size off browser height without scroll*/
+    display: flex; /*makes it easier to design flexible responsive layout structure without using float or positioning*/
+    flex-wrap: wrap; /*wrap content to another line if it doesnt place in one cell like(Excel Cell Wrap)*/
+    padding: 15px; /* top bottom right left padding is 15 px */
+    justify-content: center;
+    align-items: center;
+    background: #F5F5F5;
+}
+
+.wrap-account {
+    width: 80%;
+    overflow: hidden; /*The overflow property specifies whether to clip content or to add scrollbars when an element's content is too big to fit in a specified area.*/
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    flex-direction: row-reverse; /*The flex-direction property specifies the direction of the flexible items.*/
+}
+
+.wrap-account-pic {
+    width: 50%;
+    background-repeat: no-repeat;
+    background-size: cover; /*picture cover all its backgroundarea */
+    background-position: center;
+    position: relative; /*An element with position: relative; is positioned relative to its normal position*/
+    z-index: 1; /*The z-index property specifies the stack order of an element.
+    An element with greater stack order is always in front of an element with a lower stack order.*/
+}
+
+ /*Insert some text before the content of each element*/
+.wrap-account-pic::before{
+    content:"";
+    display:block;
+    position:absolute;
+    z-index:-1;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    background:rgba(0,0,0,0.3) /*it makes picture color 0.3 darker*/
+}
+
+.account-form{
+    display:block;
+    flex-wrap:wrap;
+    padding:260px 65px 45px 45px;
+    background-color:white;
+}
+
+.account-form-title{
+    display:block;
+    width:100%;
+    margin-top:-100px;
+    margin-bottom:50px;
+    text-align:center;
+    color:#555555;
+    font-size:25px;
+}
+
+/*Setting the Sapce that our input locate at them*/
+.wrap-input-account{
+    width:100%;
+    position:relative;
+    /*border:1px solid #e6e6e6;*/
+    margin-bottom:20px;
+    border:none;
+    
+}
+
+.input-account{
+    width:100%;
+    height:50px;
+    display:block;
+    color:#555555;
+    background:transparent;
+    font-size:18px;
+    padding:0 25px;
+    
+}
+
+.focus-account {
+    position: absolute;
+    display: block;
+    width: calc(100% + 2px); /*when focusing on a input its width and height become bigger 2px*/
+    height: calc(100%+ 2px);
+    top: -1px; /* it force input become topper*/
+    left: -1px;
+    pointer-events: none; /*The pointer-events property defines whether or not an element reacts to mouse cursor.*/
+    border: 1px solid #00ad5f;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.5s; /* transitions allows you to change property values smoothly, over a given duration.*/
+}
+
+/*focus effect do on inputs when focusing on input with focus-account class that we had made */
+.input-account:focus + .focus-account {
+    visibility: visible;
+    opacity: 1;
+    transform: scale(1); /*The scale() method increases or decreases the size of an element.*/
+    /*CSS transforms allow you to move, rotate, scale, and skew elements.*/
+}

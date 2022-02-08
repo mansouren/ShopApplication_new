@@ -1,0 +1,13 @@
+﻿@model IEnumerable<ShopApplication.Models.ProductDto>
+<h2 class="text-center" style="margin-top:20px;" >آخرین محصولات</h2>
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="container-img col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <a href="/Product/@item.Id/@item.Name.Replace(" ","-").Trim()" target="_blank">
+            <img src="~/Images/Product/@item.Img" alt="@item.Name" class="image"/>
+            </a>
+            <div class="overlay">@item.Name</div>
+        </div>
+    }
+</div>

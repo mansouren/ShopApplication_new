@@ -1,0 +1,27 @@
+﻿@model IEnumerable<ShopApplication.DataLayer.Entities.ProductFeild>
+@{
+    Layout = null;
+    int rowCount = 1;
+}
+<table class="table  table-hover table-striped" >
+    <thead>
+        <tr>
+            <th>ردیف</th>
+            <th>نام مشخصه</th>
+            <th>مقدار مشخصه</th>
+           
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@rowCount</td>
+                <td>@item.Feild.Name</td>
+                <td>@item.FeildValue</td>
+                
+            </tr>
+            rowCount++;
+        }
+    </tbody>
+</table>

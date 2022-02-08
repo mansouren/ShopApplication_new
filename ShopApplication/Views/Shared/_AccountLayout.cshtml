@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+
+<html lang="fa">
+<head>
+    <meta charset="utf-8">
+    <!--<meta http-equiv="X-UA-Compatible" content="IE=edge" />--> @*comaptible internet explorer with website*@
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>@ViewBag.Title</title>
+
+    <link href="~/lib/bootstrap-v4-rtl/css/bootstrap-rtl.min.css" rel="stylesheet" />
+    <link href="~/lib/font-awesome/css/fontawesome.min.css" rel="stylesheet" />
+    <link href="~/css/AccountStyle.css" rel="stylesheet" />
+    
+</head>
+<body>
+    <div class="my-container">
+        <div class="container-form">
+            <div class="wrap-account">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+    
+    
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap-v4-rtl/js/bootstrap.min.js"></script>
+
+</body>
+</html>

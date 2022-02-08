@@ -1,0 +1,49 @@
+﻿@page
+@model ShopApplication.Pages.Admin.Social.CreateModel
+@{
+}
+<div >
+    <h2 >افزودن شبکه اجتماعی</h2>
+</div>
+<hr />
+<form method="post" enctype="multipart/form-data">
+    <div class="col-md-12 col-sm-8 ">
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="socialMedia.SocialName">نام شبکه اجتماعی</label>
+            <input asp-for="socialMedia.SocialName" class="form-control" />
+            <span asp-validation-for="socialMedia.SocialName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="socialMedia.SocialLink">لینک</label>
+            <input asp-for="socialMedia.SocialLink" class="form-control" />
+            <span asp-validation-for="socialMedia.SocialLink" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="socialMedia.SocialOrder">ترتیب نمایش</label>
+            <input asp-for="socialMedia.SocialOrder" value="1" min="1" class="form-control" />
+            <span asp-validation-for="socialMedia.SocialOrder" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="socialMedia.SocialIconFile">آیکون</label>
+            <input asp-for="socialMedia.SocialIconFile" type="file" required />
+            @*<span asp-validation-for="socialMedia.SocialIconFile" class="text-danger"></span>*@
+        </div>
+        <br />
+        
+        <div class="form-group">
+            <label asp-for="socialMedia.NotShow">عدم نمایش</label>
+            <input asp-for="socialMedia.NotShow" type="checkbox" />
+            <span asp-validation-for="socialMedia.NotShow" class="text-danger"></span>
+        </div>
+
+
+        <div class="form-group">
+            <input class="btn btn-success" value="ثبت" type="submit" />
+            <a class="btn btn-danger " asp-page="Index">بازگشت</a>
+
+        </div>
+    </div>
+
+</form>

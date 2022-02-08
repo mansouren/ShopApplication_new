@@ -1,0 +1,43 @@
+﻿@page "{id}"
+@model ShopApplication.Pages.Admin.Products.DeleteModel
+<form method="post">
+    <div class="col-md-8 col-sm-8 col-xs-8">
+        <input type="hidden" asp-for="product.Id" />
+   
+        <input type="hidden" asp-for="product.Img" />
+        
+        <div class="x_panel">
+            <div class="x_title">
+                <h2 style="margin-top:10px;">
+                    حذف محصول
+
+                </h2>
+               
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <div class="row">
+
+                    <div class="alert alert-danger ">
+                        <p>آیا میخواهید محصول " @Model.product.Name " را حذف نمایید ؟</p>
+                        
+                        <img src="~/Images/Product/@Model.product.Img" alt="تصویری یافت نشد"
+                             class="img-fluid" width="200" height="230" style="margin:auto;" />
+                    </div>
+
+
+                    <hr class="col-md-12" />
+                    <div class="item form-group">
+                        <div class="col-md-12 col-sm-12 col-xs-12 col-md-offset-5">
+
+                            <input type="submit" class="btn btn-danger" value="حذف" />
+                            <a asp-page="Index" class="btn btn-info">انصراف</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>

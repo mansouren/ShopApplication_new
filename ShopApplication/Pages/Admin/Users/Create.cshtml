@@ -1,0 +1,44 @@
+﻿@page
+
+@model ShopApplication.Pages.Admin.Users.CreateModel
+@{
+}
+<div>
+    <h2>افزودن کاربر</h2>
+</div>
+<hr />
+<form method="post" >
+    <div class="col-md-12 col-sm-8 ">
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="userDto.RoleId">نقش کاربر</label>
+            <select class="form-control" asp-for="userDto.RoleId" asp-items="@ViewData["Roles"] as SelectList"></select>
+            <span asp-validation-for="userDto.RoleId" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="userDto.Mobile">شماره موبایل</label>
+            <input asp-for="userDto.Mobile" class="form-control" />
+            <span asp-validation-for="userDto.Mobile" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="userDto.Password">کلمه عبور</label>
+            <input asp-for="userDto.Password" type="password" class="form-control" />
+            <span asp-validation-for="userDto.Password" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="userDto.IsActive">فعال/غیرفعال</label>
+            <input asp-for="userDto.IsActive" type="checkbox" />
+
+        </div>
+
+        <br />
+
+        <div class="form-group">
+            <input class="btn btn-success" value="ثبت" type="submit" />
+            <a class="btn btn-danger " asp-page="Index">بازگشت</a>
+
+        </div>
+    </div>
+
+</form>

@@ -1,0 +1,49 @@
+﻿@model ShopApplication.Models.RegisterDto
+
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_AccountLayout.cshtml";
+}
+
+<div class="wrap-account-pic col-lg-6 col-md-6 hidden-sm hidden-xs" style="background-image:url(../../Images/Site/Login.png)">
+
+</div>
+
+<div class="account-form col-lg-6 col-md-6 col-sm-12 col-xs-12">
+    <span class="account-form-title">
+        فرم عضویت
+    </span>
+    <form asp-action="Register">
+        <div class="wrap-input-account">
+            <div class="form-group">
+                <input asp-for="Mobile" type="number" class="input-account" placeholder="شماره موبایل مثل 09384022308" />
+                <span class="focus-account"></span>
+                <span asp-validation-for="Mobile" class="text-danger"></span>
+
+            </div>
+            <div class="wrap-input-account">
+                <input asp-for="Password" class="input-account" type="password" placeholder="پسورد" />
+                <span class="focus-account"></span>
+                <span asp-validation-for="Password" class="text-danger"></span>
+
+            </div>
+            <div class="wrap-input-account">
+                <input asp-for="RePassword" class="input-account" type="password" placeholder="تکرار پسورد" />
+                <span class="focus-account"></span>
+                <span asp-validation-for="RePassword" class="text-danger"></span>
+
+            </div>
+
+        </div>
+        <div class="container-button">
+            <button class="account-button" type="submit">
+                ثبت نام
+            </button>
+        </div>
+    </form>
+</div>
+
+
+
+
+

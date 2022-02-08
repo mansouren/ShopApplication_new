@@ -1,0 +1,13 @@
+﻿@model IEnumerable<ShopApplication.Models.GroupDto>
+
+<div class="dropdown">
+    <a>گروه ها</a>
+    <div class="dropdown-content">
+        @foreach (var item in Model)
+        {
+            <a href="#" style="color:#00ad5f;">@item.Name</a>
+
+        }
+
+    </div>
+</div>

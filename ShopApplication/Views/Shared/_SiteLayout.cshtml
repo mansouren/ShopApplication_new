@@ -1,0 +1,47 @@
+﻿
+<!DOCTYPE html>
+
+<html lang="fa">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>@ViewBag.Title</title>
+
+    <link href="~/lib/bootstrap-v4-rtl/css/bootstrap-rtl.css" rel="stylesheet" />
+    <link href="~/lib/font-awesome/css/all.css" rel="stylesheet" />
+    <link href="~/css/site.css" rel="stylesheet" />
+    <link href="~/OwlCarousel/css/owl.carousel.min.css" rel="stylesheet" />
+    <link href="~/OwlCarousel/css/owl.theme.default.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="row" style="margin-right:10px;margin-left:10px;" >
+        <div class="col-lg-6 col-md-6 col-sm-6 col-12 mg-top-40">
+            <h2 class="text-right">فروشگاه اینترنتی</h2>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-12 mg-top-40">
+            <form role="search" action="/Home/Filter/" method="get">
+                <div class="input-group mb-3">
+
+                    <input type="text" name="strsearch" class="form-control" placeholder="جستجو ...">
+                    <div class="input-group-prepend">
+                        <button type="submit" class="btn btn-success"><span class="fa fa-search" style="margin-left: 5px"></span>جستجو</button>
+                    </div>
+                </div>
+             
+            </form>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    @await Component.InvokeAsync("MenuComponent")
+
+    <div class="content" style="min-height:800px;">
+        @RenderBody()
+    </div>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/bootstrap-v4-rtl/js/bootstrap.js"></script>
+    <script src="~/js/site.js"></script>
+    @RenderSection("mySection", false)
+</body>
+</html>

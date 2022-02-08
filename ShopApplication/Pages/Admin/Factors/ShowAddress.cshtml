@@ -1,0 +1,15 @@
+﻿@page "{addressid}"
+@model ShopApplication.Pages.Admin.Factors.ShowAddressModel
+@{
+    Layout = null;
+}
+<input type="hidden" asp-for="@Model.Address.Id" />
+
+<br />
+<h4 class="text-center">@Model.Address.City.State.Name</h4>
+<br />
+<h4 class="text-center">@Model.Address.City.Name</h4>
+<br />
+<h4 class="text-center">@Model.Address.AddressText</h4>
+<br />
+<h4 class="text-center">@Model.Address.PostalCode</h4>

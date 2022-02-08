@@ -1,0 +1,26 @@
+﻿@page "{id}"
+@model ShopApplication.Pages.Admin.Galleries.CreateModel
+@{
+    Layout =null;
+}
+
+<form method="post" asp-page-handler="Create" enctype="multipart/form-data">
+    
+    <select  style="display:none;" asp-for="Gallery.ProductId" asp-items="@(ViewData["product"] as SelectList)"></select>
+    <div class="col-md-12 col-sm-8 ">
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+       
+        <div class="form-group">
+            <label asp-for="Gallery.ImgFile">انتخاب تصویر</label>
+            <input asp-for="Gallery.ImgFile" type="file" required />
+
+        </div>
+        
+        <div class="form-group">
+            <button class="btn btn-success" type="submit">ثبت</button>
+            
+        </div>
+    </div>
+
+</form>

@@ -1,0 +1,40 @@
+﻿@page
+@model ShopApplication.Pages.Admin.SiteSettingsModel
+@{
+}
+
+<div><h2>تنظیمات سایت</h2></div>
+<hr />
+<form method="post">
+    <div class="col-md-12 col-sm-8 ">
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="SettingsDto.Name">نام فروشگاه</label>
+            <input asp-for="SettingsDto.Name" class="form-control" />
+            <span asp-validation-for="SettingsDto.Name" class="text-danger"></span>
+
+        </div>
+
+
+        <div class="form-group">
+            <label asp-for="SettingsDto.Description">توضیحات مختصر</label>
+            <textarea asp-for="SettingsDto.Description" class="form-control"></textarea>
+            <span asp-validation-for="SettingsDto.Description" class="text-danger"></span>
+
+        </div>
+
+
+        <div class="form-group">
+            <label asp-for="SettingsDto.KeyWords">کلمات کلیدی</label>
+            <textarea asp-for="SettingsDto.KeyWords" class="form-control"></textarea>
+            <span asp-validation-for="SettingsDto.KeyWords" class="text-danger"></span>
+
+        </div>
+        <div class="form-group">
+            <input class="btn btn-success btn-block" value="ثبت" type="submit" />
+
+        </div>
+    </div>
+    
+</form>

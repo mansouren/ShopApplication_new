@@ -1,0 +1,54 @@
+﻿@page
+@model ShopApplication.Pages.Admin.Menu.CreateModel
+@{
+}
+<div>
+    <h2>افزودن منو</h2>
+</div>
+<hr />
+<form method="post">
+    <div class="col-md-12 col-sm-8 ">
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="form-group">
+            <label asp-for="MenuDto.Name">نام منو</label>
+            <input asp-for="MenuDto.Name" class="form-control" />
+            <span asp-validation-for="MenuDto.Name" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="MenuDto.Order">ترتیب نمایش</label>
+            <input asp-for="MenuDto.Order" min="1" value="1" type="number" class="form-control" />
+            <span asp-validation-for="MenuDto.Order" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="MenuDto.NotShow">عدم نمایش</label>
+            <input asp-for="MenuDto.NotShow" type="checkbox" />
+
+        </div>
+        <div class="form-group">
+            <label asp-for="MenuDto.Description">محتویات</label>
+            <textarea id="my-textarea" asp-for="MenuDto.Description" type="password" class="form-control"></textarea>
+            <span asp-validation-for="MenuDto.Description" class="text-danger"></span>
+        </div>
+        <br />
+
+        <div class="form-group">
+            <input class="btn btn-success" value="ثبت" type="submit" />
+            <a class="btn btn-danger " asp-page="Index">بازگشت</a>
+
+        </div>
+    </div>
+
+</form>
+
+@section mySection{
+    <script src="~/ckeditor/ckeditor.js"></script>
+    <script src="~/ckeditor/adapters/jquery.js"></script>
+    <script>
+        $(function () {
+            $('#my-textarea').ckeditor();
+        });
+    </script>
+
+}

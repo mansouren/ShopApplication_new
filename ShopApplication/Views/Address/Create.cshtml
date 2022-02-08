@@ -1,0 +1,71 @@
+﻿@model ShopApplication.Models.AddressDto
+@{
+    ViewData["Title"] = "افزودن آدرس";
+    Layout = "~/Pages/Shared/_AdminLayout.cshtml";
+}
+
+<div>
+    <h2>افزودن آدرس جدید</h2>
+</div>
+<hr />
+<form asp-action="Create">
+    <div class="col-md-12 col-sm-8 ">
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label >استان</label>
+            <select id="countrylist" asp-for="StateId"  asp-items="@ViewBag.Statelst" class="form-control" > 
+                <option>انتخاب کنید</option>
+            </select>
+            <span asp-validation-for="StateId" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label >شهر</label>
+            <select id="citylist" asp-for="CityId" class="form-control" ></select>
+            <span asp-validation-for="CityId" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="AddressText">آدرس پستی</label>
+            <textarea asp-for="AddressText" class="form-control"></textarea>
+            <span asp-validation-for="AddressText" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="PostalCode">کد پستی</label>
+            <input asp-for="PostalCode" class="form-control" />
+            <span asp-validation-for="PostalCode" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input class="btn btn-success" value="ثبت" type="submit" />
+            <a class="btn btn-danger " href="/Address/Index">بازگشت</a>
+
+        </div>
+    </div>
+
+</form>
+@section mySection{
+    <script>
+      
+        //Insert default item "Select" in dropdownlist on load
+        $(document).ready(function () {
+            var items = "<option value='0'>انتخاب کنید</option>";
+            $("#citylist").html(items);
+        });
+
+        //Bind City dropdownlist
+        $("#countrylist").change(function () {
+            var countryId = $("#countrylist").val();
+            var url = "/Address/GetCities";
+
+            $.getJSON(url, { id: countryId }, function (data) {
+                var item = "";
+                $("#citylist").empty();
+                $.each(data, function (i, city) {
+                    item += '<option value="' + city.value + '">' + city.text + '</option>'
+                });
+                $("#citylist").html(item);
+            });
+        });
+    </script>
+}
+

@@ -1,0 +1,110 @@
+﻿@page
+@model ShopApplication.Pages.Admin.Factors.IndexModel
+@{
+}
+<div class="row">
+
+    <div class="col-md-12" style="margin-top:20px">
+        <div>
+            <h4 class="fa-pull-right">نمایش سفارش ها</h4>
+
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+<hr />
+<div style="margin-bottom:30px;">
+    <input type="text" class="form-control" placeholder="جستجو ..." id="mySearch" />
+</div>
+<div class=" table-responsive table-full-width fa-pull-right">
+    @{
+        int rowCount = 1;
+    }
+    <table id="myTable" class="table table-hover table-striped">
+        <thead>
+            <tr>
+                <th>ردیف</th>
+                <th>شماره سفارش</th>
+                <th>تاریخ پرداخت</th>
+                <th>ساعت پرداخت</th>
+                <th>مبلغ</th>
+                <th>پرداخت شده</th>
+                <th>عملیات</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Factors)
+            {
+                <tr>
+                    <td>@rowCount</td>
+                    <td>@item.PayDate</td>
+                    <td>@item.PayNumber</td>
+                    <td>@item.PayTime</td>
+                    <td>@item.Price</td>
+                    @if (item.IsPayed)
+                    {
+                        <td><input type="checkbox" value="@item.IsPayed" checked disabled /></td>
+                    }
+                    else
+                    {
+                        <td><input type="checkbox" value="@item.IsPayed" disabled /></td>
+                    }
+                    <td>
+
+                        <a href="/Admin/Factors/Detail/@item.Id" class="btn btn-info btn-xs">
+                            جزئیات
+                        </a>
+                        <a href="#" onclick='ShowAddress(@item.AddressId)' class="btn btn-primary btn-xs">
+                            آدرس ارسال
+                        </a>
+                    </td>
+                </tr>
+                rowCount++;
+            }
+        </tbody>
+    </table>
+</div>
+<div id="myModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 id="myTitle" class="modal-title"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div id="myBody" class="modal-body">
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@section mySection{
+    <script>
+        $(document).ready(function () {
+            $("#mySearch").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+    <script>
+        function ShowAddress(addressid) {
+            $.ajax({
+                url: "/Admin/Factors/ShowAddress/" + addressid,
+                type: "Get",
+                data: {}
+            }).done(function (result) {
+                $('#myModal').modal('show');
+                $('#myTitle').html('نمایش آدرس');
+                $('#myBody').html(result);
+            });
+        }
+
+    </script>
+}

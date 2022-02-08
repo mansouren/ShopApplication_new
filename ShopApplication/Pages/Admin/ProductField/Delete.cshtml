@@ -1,0 +1,6 @@
+﻿@page "{id}/{productid}"
+@model ShopApplication.Pages.Admin.ProductField.DeleteModel
+@{
+    Layout = null;
+}
+<select style="display:none;" asp-for="productFeild.ProductId" asp-items="@(ViewData["ProductId"] as SelectList)"></select>

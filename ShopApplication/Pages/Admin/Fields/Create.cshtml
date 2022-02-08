@@ -1,0 +1,26 @@
+﻿@page
+@model ShopApplication.Pages.Admin.Fields.CreateModel
+@{
+}
+<div>
+    <h2>افزودن مشخصه</h2>
+</div>
+<hr />
+<form method="post" >
+    <div class="col-md-12 col-sm-8 ">
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="feild.Name">عنوان مشخصه</label>
+            <input asp-for="feild.Name" class="form-control" />
+            <span asp-validation-for="feild.Name" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <input class="btn btn-success" value="ثبت" type="submit" />
+            <a class="btn btn-danger " asp-page="Index">بازگشت</a>
+
+        </div>
+    </div>
+
+</form>

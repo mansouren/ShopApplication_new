@@ -1,0 +1,28 @@
+﻿@using ShopApplication.Services
+
+@{
+    ViewData["Title"] = "RedirectVPOS";
+    Layout = "~/Pages/Shared/_AdminLayout.cshtml";
+}
+
+<div>
+
+    <h3>تأیید و نمایش صفحه پرداخت</h3>
+
+    <br />
+
+    <h4 class="text-center">پرداخت از طریق درگاه بانک ملت انجام می شود</h4>
+
+    <br />
+
+    <form method="post" name="formBank" id="formBank" action='@BankMellat.PgwSite'>
+
+        <input type="hidden" value='@ViewBag.id' id="RefId" name="RefId" />
+
+        <input type="submit" value="پرداخت آنلاین" />
+
+    </form>
+
+</div>
+
+

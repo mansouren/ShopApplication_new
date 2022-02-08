@@ -1,0 +1,98 @@
+﻿@model IEnumerable<ShopApplication.DataLayer.Entities.FactorDetail>
+@{
+    ViewData["Title"] = "نمایش صورت حساب";
+    Layout = "~/Pages/Shared/_AdminLayout.cshtml";
+    int rowCount = 1;
+    double totalSum = 0;
+
+}
+<div>
+    <h2 class="fa-pull-right" style="margin-top:40px;">نمایش صورت حساب</h2>
+</div>
+
+<div class="col-lg-10 col-md-10 col-sm-10 col-12">
+    <table class="table table-hover table-striped">
+        <thead>
+            <tr>
+                <th>ردیف</th>
+                <th>نام محصول</th>
+                <th>قیمت</th>
+                <th>تعداد</th>
+                <th>جمع</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                double sumPrice = item.ProductCount * item.Product.Price;
+                totalSum += sumPrice;
+                <tr>
+                    <td>@rowCount</td>
+                    <td>@item.Product.Name</td>
+                    <td>@item.Product.Price.ToString("n0") ریال</td>
+                    <td>@item.ProductCount</td>
+                    <td>@sumPrice.ToString("n0") ریال</td>
+
+                </tr>
+                rowCount++;
+            }
+            <tr>
+                <td colspan="4" style="text-align:left;">جمع کل: </td>
+                <td>@totalSum.ToString("n0") ریال</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <br />
+    @if (ViewBag.factoraddress != null)
+    {
+        <a href="/Payment/Index" class="btn btn-success btn-block">پرداخت آنلاین</a>
+        <br />
+        @await Component.InvokeAsync("ShowSelectedAddressComponent");
+        <br />
+        <a href="#" class="btn btn-info btn-block" onclick='SelectAddress()'>تغییرآدرس برای ارسال کالا</a>
+
+    }
+    else
+    {
+        <a href="#" class="btn btn-info btn-block" onclick='SelectAddress()'>انتخاب آدرس برای ارسال کالا</a>
+
+    }
+</div>
+
+
+
+<div id="myModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 id="myTitle" class="modal-title"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div id="myBody" class="modal-body">
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@section mySection{
+    <script>
+        function SelectAddress() {
+            $.ajax({
+                url: "/Profile/SelectAddress/",
+                type: "Get",
+                data: {}
+            }).done(function (result) {
+                $('#myModal').modal('show');
+                $('#myTitle').html('نمایش آدرسهای کاربر');
+                $('#myBody').html(result);
+            });
+        }
+
+    </script>
+}

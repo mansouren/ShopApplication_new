@@ -1,0 +1,45 @@
+﻿@page
+@model ShopApplication.Pages.Admin.CallSettingsModel
+@{
+}
+<div><h2>تنظیمات تماس سایت</h2></div>
+<hr />
+<form method="post">
+    <div class="col-md-12 col-sm-8 ">
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="callSettingsDto.Mobile">موبایل</label>
+            <input asp-for="callSettingsDto.Mobile" class="form-control" />
+            <span asp-validation-for="callSettingsDto.Mobile" class="text-danger"></span>
+
+        </div>
+
+
+        <div class="form-group">
+            <label asp-for="callSettingsDto.Telephone">تلفن</label>
+            <input asp-for="callSettingsDto.Telephone" class="form-control"/>
+            <span asp-validation-for="callSettingsDto.Telephone" class="text-danger"></span>
+
+        </div>
+
+
+        <div class="form-group">
+            <label asp-for="callSettingsDto.Fax">فکس</label>
+            <input asp-for="callSettingsDto.Fax" class="form-control"/>
+            <span asp-validation-for="callSettingsDto.Fax" class="text-danger"></span>
+
+        </div>
+        <div class="form-group">
+            <label asp-for="callSettingsDto.Address">آدرس</label>
+            <textarea asp-for="callSettingsDto.Address" class="form-control"></textarea>
+            <span asp-validation-for="callSettingsDto.Address" class="text-danger"></span>
+
+        </div>
+        <div class="form-group">
+            <input class="btn btn-success btn-block" value="ثبت" type="submit" />
+
+        </div>
+    </div>
+
+</form>

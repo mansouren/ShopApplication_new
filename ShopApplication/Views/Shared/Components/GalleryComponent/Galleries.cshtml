@@ -1,0 +1,25 @@
+﻿@model IEnumerable<ShopApplication.DataLayer.Entities.Gallery>
+@{
+    int counter = 1;
+}
+<div class="container col-lg-12 col-md-12 col-sm-12">
+    <div>
+        @foreach (var item in Model)
+        {
+            <div class="mySlides">
+                <img src="~/Images/Gallery/@item.Img" alt="gallery" style="width:80%" />
+            </div>
+        }
+    </div>
+    <div>
+        @foreach (var item in Model)
+        {
+            <div class="column">
+                <img src="/Images/Gallery/@item.Img" class="demo curser" style="width:100%" alt="gallery" onclick="currentSlide(@counter)" />
+            </div> 
+            counter += 1;
+        }
+
+    </div>
+</div>
+

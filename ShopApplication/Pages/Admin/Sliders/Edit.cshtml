@@ -1,0 +1,48 @@
+﻿@page "{id}"
+@model ShopApplication.Pages.Admin.Sliders.EditModel
+@{
+}
+<div><h2>ویرایش اسلاید</h2></div>
+<hr />
+<form method="post" enctype="multipart/form-data">
+    <input asp-for="sliderDto.Imgname" type="hidden" />
+    <input asp-for="sliderDto.Id" type="hidden" />
+
+    <div class="col-md-12 col-sm-8 ">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="sliderDto.Title">نام اسلاید</label>
+            <input asp-for="sliderDto.Title" class="form-control" />
+            <span asp-validation-for="sliderDto.Title" class="text-danger"></span>
+        </div>
+        
+        <div class="form-group">
+            <label asp-for="sliderDto.Order">ترتیب نمایش</label>
+            <input asp-for="sliderDto.Order" min="1" class="form-control" />
+            <span asp-validation-for="sliderDto.Order" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="sliderDto.ImageFile">آیکون</label>
+            <input asp-for="sliderDto.ImageFile" type="file" />
+            <span asp-validation-for="sliderDto.ImageFile" class="text-danger"></span>
+        </div>
+        <br />
+
+        <img src="~/Images/Slide/thumb/@Model.sliderDto.Imgname" alt="تصویری یافت نشد"
+             class="img-fluid" style="margin:auto;" height="100" width="100" />
+        <br />
+
+        <div class="form-group">
+            <label asp-for="sliderDto.NotShow">عدم نمایش</label>
+            <input asp-for="sliderDto.NotShow" type="checkbox" />
+            <span asp-validation-for="sliderDto.NotShow" class="text-danger"></span>
+        </div>
+
+
+        <div class="form-group">
+            <input class="btn btn-success " value="ذخیره" type="submit" />
+            <a class="btn btn-danger " asp-page="Index">بازگشت</a>
+        </div>
+    </div>
+
+</form>

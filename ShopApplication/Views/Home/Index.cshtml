@@ -1,0 +1,47 @@
+﻿@{
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+    ViewData["Title"] = "Home Page";
+}
+
+
+@await Component.InvokeAsync("SlideComponent")
+<div class="clearfix"></div>
+@await Component.InvokeAsync("ProductComponent")
+<div class="clearfix"></div>
+@await Component.InvokeAsync("MostSeenProductsComponent");
+<div class="clearfix"></div>
+<br />
+ @await Component.InvokeAsync("BrandComponent")
+
+
+@section mySection{ 
+<script src="~/OwlCarousel/js/owl.carousel.js"></script>
+<script>
+    $(document).ready(function () {
+        var owl = $('.owl-carousel');
+        owl.owlCarousel({
+            rtl: true,
+            items: 4,
+            loop: true,
+            margin: 10,
+            autoplay: true,
+            autoplayTimeout: 1000,
+            autoplayHoverPause: true,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 3
+                },
+                1000: {
+                    items: 5
+                }
+            }
+
+        });
+
+    });
+    
+</script>
+}

@@ -1,0 +1,41 @@
+﻿@model IEnumerable<ShopApplication.DataLayer.Entities.Address>
+@{
+    Layout = null;
+}
+
+@if (Model.Count() == 0)
+{
+    <div class="alert alert-danger">
+        <h4>هنوز آدرسی ثبت نکرده اید، جهت ثبت آدرس از <a href="/Address/Index">اینجا</a> کمک بگیرید</h4>
+    </div>
+}
+else
+{
+    <div class="col-lg-10 col-md-10 col-sm-10 col-12">
+        <form>
+            <div class="col-md-12 col-sm-8 " id="maindiv">
+                <div class="form-group">
+                    <label>انتخاب آدرس</label>
+                    <select class="form-control" asp-items="@(ViewData["Addresslist"] as SelectList)" id="addressid"></select>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-success btn-block" onclick="myFunction()">انتخاب آدرس</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+}
+
+
+<script>
+    function myFunction() {
+        var addressId = document.getElementById("addressid").value;
+        var addID = 0;
+        if (addressId != 0) {
+            addID = addressId;
+        }
+        window.open("/UpdateAddress/" + addID);
+    
+    }
+</script>

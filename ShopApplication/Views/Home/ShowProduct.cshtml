@@ -1,0 +1,113 @@
+﻿@using ShopApplication.DataLayer.Entities
+@model Product;
+@{
+    ViewData["Title"] = Model.Name;
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+    @using ShopApplication.Services.Scope;
+    @inject ShowProductScope ShowProductScope;
+    var gallerylst = ShowProductScope.GetGalleries(Model.Id);
+    ViewData["productqty"] = Model.Qty;
+    ViewData["productId"] = Model.Id;
+}
+
+<div class="row">
+    <div class="col-lg-6 col-md-6 col-sm-6 d-none d-sm-block text-center">
+
+        <h2 class="title-color text-right">@Model.Name</h2>
+        <br />
+        <h4 class="text-right">از گـروه : @Model.Group.Name / از بـرند : @Model.Brand.Title</h4>
+        <br />
+
+        <div>
+
+            @if (Model.Qty == 0)
+            {
+                <h3 class="fa-pull-right red-text-color">
+                    موجود نیست
+                </h3>
+                <h3 class="fa-pull-left">
+                    <a href="#" class="btn btn-success disabled">افزودن به سبد خرید</a>
+                </h3>
+            }
+            else
+            {
+                <h3 class="fa-pull-right price-color">
+                    قیمت : @Model.Price.ToString("n0") ریال
+                </h3>
+               <partial name="AddToBasket"  view-data="ViewData"/>
+            }
+
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div class="mg-top-40" >
+            @await Component.InvokeAsync("FieldComponent", Model.Id)
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div class="mg-top-40">
+            @Html.Raw(Model.Description)
+        </div>
+        <div class="d-none d-sm-block">
+            @await Component.InvokeAsync("SuggestionProductsComponent", new ViewDataDictionary(this.ViewData) { { "id", Model.Id }, { "brandid", Model.BrandId }, { "groupid", Model.GroupId } })
+        </div>
+    </div>
+
+    <div class="col-lg-6 col-md-6 col-sm-6 d-none d-sm-block text-center">
+
+        @if (gallerylst.Count == 0)
+        {
+            <img src="~/Images/Product/@Model.Img" alt="@Model.Name" width="300" height="300" class="img-responsive" style="margin: auto" />
+
+        }
+        else
+        {
+            @await Component.InvokeAsync("GalleryComponent", Model.Id)
+
+        }
+    </div>
+</div>
+
+<div class="col-sm-12 d-block d-sm-none">
+
+    <h2 class="title-color text-center">@Model.Name</h2>
+    <br />
+    <h4 class="text-center">از گـروه : @Model.Group.Name / از بـرند : @Model.Brand.Title</h4>
+    <br />
+
+    <img src="~/Images/Product/@Model.Img" alt="@Model.Name" width="200" height="200" class="img-fluid" style="margin: auto" />
+
+    <div>
+
+        @if (Model.Qty == 0)
+        {
+            <h3 class="text-center red-text-color">
+                موجود نیست
+            </h3>
+            <br />
+            <h3 class="text-center">
+                <a href="#" class="btn btn-success disabled">افزودن به سبد خرید</a>
+            </h3>
+        }
+        else
+        {
+            <h3 class="text-center price-color">
+                قیمت : @Model.Price.ToString("n0") ریال
+            </h3>
+            <br />
+            <partial name="AddToBasket" view-data="ViewData" />
+        }
+
+    </div>
+    <div class="clearfix"></div>
+
+    <div class="mg-top-40">
+        @await Component.InvokeAsync("FieldComponent", Model.Id)
+    </div>
+    <div class="clearfix"></div>
+    <div class="mg-top-40">@Html.Raw(Model.Description)</div>
+
+</div>
+

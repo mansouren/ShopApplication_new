@@ -1,0 +1,25 @@
+﻿
+@model cloudscribe.Pagination.Models.PagedResult<ShopApplication.DataLayer.Entities.Product>
+@{
+    Layout = "/Views/Shared/_SiteLayout.cshtml";
+    ViewData["Controller"] = "Home";
+    ViewData["Action"] = "Filter";
+}
+<div class="row">
+    @foreach (var item in Model.Data)
+    {
+        <div class="container-img col-lg-3 col-md-3 col-sm-6 col-12">
+            <a href="/Product/@item.Id/@item.Name.Replace(" ","-").Trim()" target="_blank">
+                <img src="~/Images/Product/@item.Img" alt="@item.Name" class="image" />
+            </a>
+            <div class="overlay">@item.Name</div>
+        </div>
+    }
+
+</div>
+<div class="clearfix"></div>
+<div style="margin-top:30px;" class="justify-content-center">
+    <partial name="_PaginationPartial" model="Model" view-data="ViewData" />
+    
+</div>
+
